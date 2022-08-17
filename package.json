@@ -1,11 +1,20 @@
 {
   "name": "pixelbuffer",
   "version": "0.1.0",
+  "private": false,
   "description": "A pixelbuffer implemented in JavaScript.",
   "main": "pixelbuffer.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nnamdi Michael Okpala",
-  "license": "ISC"
+  "license": "ISC",
+  "keywords": [
+    "pixelbuffer",
+    "buffer",
+    "pixel",
+    "graphics",
+    "2d",
+    "3d"
+  ]
 }
