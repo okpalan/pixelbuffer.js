@@ -24,7 +24,7 @@ var color = {
     x:225,
     y:0,
     z:0,
-    a:255
-}
+    // a: default to 255
+    }
 pixelBuffer.setPixel(0, 0, color);
 ```
