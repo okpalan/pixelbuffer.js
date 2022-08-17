@@ -35,7 +35,7 @@
         this.data[i] = color.x;
         this.data[i + 1] = color.y;
         this.data[i + 2] = color.z;
-        this.data[i + 3] = 255;
+        this.data[i + 3] = color.a || 255
     };
 
 
