@@ -63,7 +63,7 @@
      *
      * @param {number} width The width of the pixel buffer.
      * @param {number} height The height of the pixel buffer.
-     * @param {Vector} color The default color of the pixel buffer.
+     * @param {object} color The default color of the pixel buffer.
      * @return {PixelBuffer} The new pixel buffer.
      */
     PixelBuffer.create = function (width, height, color) {
@@ -76,7 +76,7 @@
     /**
      * Fills the pixel buffer with a color.
      *
-     * @param {Vector} color The color to fill the pixel buffer with.
+     * @param {object} color The color to fill the pixel buffer with.
      */
     PixelBuffer.prototype.fill = function (color) {
         for (var i = 0; i < this.width; i++) {
