@@ -11,8 +11,8 @@
         this.width = width;
         this.height = height;
     }
-    
-	
+
+
     /**
      * Gets the index of the pixel in the array buffer.
      *
@@ -39,7 +39,7 @@
         this.data[i + 3] = color.a || 255
     };
 
-    PixelBuffer.prototype.getPixel = function(x, y) {
+    PixelBuffer.prototype.getPixel = function (x, y) {
         var index = (y * this.width + x) * 4;
         return [
             this.data[index],
@@ -66,9 +66,9 @@
             }
         }
     };
-    PixelBuffer.prototype.toUint8ClampedArray = function() {
-		return new Uint8ClampedArray(this.data);
-	};
+    PixelBuffer.prototype.toUint8ClampedArray = function () {
+        return new Uint8ClampedArray(this.data);
+    };
     /**
      * Creates a new pixel buffer.
      *
@@ -78,12 +78,13 @@
      * @return {PixelBuffer} The new pixel buffer.
      */
     PixelBuffer.create = function (width, height, color) {
+        if (!color) color = { r: 0, g: 0, b: 0, a: 0 }; 
         var data = new Uint8Array(width * height * 4);
         var pixelBuffer = new PixelBuffer(data, width, height);
         pixelBuffer.fill(color);
         return pixelBuffer;
     };
- 
+
     /**
      * Fills the pixel buffer with a color.
      *
@@ -96,8 +97,8 @@
             }
         }
     };
-    
-    
+
+
     /**
      * Gets a string representation of the pixel buffer.
      *
