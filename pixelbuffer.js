@@ -38,6 +38,54 @@
         this.data[i + 3] = color.a || 255
     };
 
+    
+    /**
+     * Blends a pixel buffer with this one.
+     *
+     * @param {PixelBuffer} pixelBuffer The pixel buffer to blend with this one.
+     * @param {number} x The x-coordinate of the top-left corner of the pixel buffer.
+     * @param {number} y The y-coordinate of the top-left corner of the pixel buffer.
+     */
+    PixelBuffer.prototype.blend = function (pixelBuffer, x, y) {
+        var xMax = x + pixelBuffer.width;
+        var yMax = y + pixelBuffer.height;
+
+        for (var i = x, p = 0; i < xMax; i++, p++) {
+            for (var j = y, q = 0; j < yMax; j++, q++) {
+                var op = pixelBuffer.getPixel(p, q);
+                this.setPixel(i, j, op);
+            }
+        }
+    };
+
+    /**
+     * Creates a new pixel buffer.
+     *
+     * @param {number} width The width of the pixel buffer.
+     * @param {number} height The height of the pixel buffer.
+     * @param {Vector} color The default color of the pixel buffer.
+     * @return {PixelBuffer} The new pixel buffer.
+     */
+    PixelBuffer.create = function (width, height, color) {
+        var data = new Uint8Array(width * height * 4);
+        var pixelBuffer = new PixelBuffer(data, width, height);
+        pixelBuffer.fill(color);
+        return pixelBuffer;
+    };
+ 
+    /**
+     * Fills the pixel buffer with a color.
+     *
+     * @param {Vector} color The color to fill the pixel buffer with.
+     */
+    PixelBuffer.prototype.fill = function (color,width,height) {
+        for (var i = 0; i < width; i++) {
+            for (var j = 0; j < height; j++) {
+                this.setPixel(i, j, color);
+            }
+        }
+    };
+
 
     if (typeof define == "function" && define.amd) {
         define([], PixelBuffer);
