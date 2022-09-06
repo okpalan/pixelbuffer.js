@@ -13,11 +13,12 @@
             width: 100%;
         }
     </style>
+    <script src="./pixelbuffer.js" defer></script>
+
 </head>
 
 <body>
     <canvas id="pixelbuffered"></canvas>
-    <script src="./pixelbuffer.js"></script>
     <script>
         var Color = function (r, g, b, a) {
             this.r = r;
@@ -42,7 +43,7 @@
         // Get the image data
         const bufferData = buffer.toUint8ClampedArray();
         console.log(bufferData)
-        const imageData = new ImageData(bufferData, canvas.width,canvas.height);
+        const imageData = new ImageData(bufferData, canvas.width, canvas.height);
 
         // Draw the image data
         const ctx = canvas.getContext('2d');
@@ -60,7 +61,7 @@
         dotBuffer.fill(new Color(0, 0, 0, 255));
 
         // Get the image data
-        const dotBufferData = dotBuffer.data;
+        const dotBufferData = dotBuffer.toUint8ClampedArray()
         const dotImageData = new ImageData(dotBufferData, 800, 600);
 
         // Draw the image data
