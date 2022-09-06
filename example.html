@@ -34,14 +34,15 @@
 
 
         // Create a pixel buffer
-        const buffer = PixelBuffer.create(800, 600);
+        const buffer = PixelBuffer.create(800, 600, new Color(0, 0, 0, 255));
 
         // Fill it
-        buffer.fill(new Color(0, 0, 255, 255));
+        buffer.fill(new Color(173, 93, 8, 255));
 
         // Get the image data
-        const bufferData = buffer.data;
-        const imageData = new ImageData(bufferData, 800, 600);
+        const bufferData = buffer.toUint8ClampedArray();
+        console.log(bufferData)
+        const imageData = new ImageData(bufferData, canvas.width,canvas.height);
 
         // Draw the image data
         const ctx = canvas.getContext('2d');

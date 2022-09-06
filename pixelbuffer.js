@@ -11,7 +11,8 @@
         this.width = width;
         this.height = height;
     }
-
+    
+	
     /**
      * Gets the index of the pixel in the array buffer.
      *
@@ -65,7 +66,9 @@
             }
         }
     };
-
+    PixelBuffer.prototype.toUint8ClampedArray = function() {
+		return new Uint8ClampedArray(this.data);
+	};
     /**
      * Creates a new pixel buffer.
      *
