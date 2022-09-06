@@ -78,7 +78,7 @@
      * @return {PixelBuffer} The new pixel buffer.
      */
     PixelBuffer.create = function (width, height, color) {
-        if (!color) color = { r: 0, g: 0, b: 0, a: 0 }; 
+        if (!color) color = { r: 0, g: 0, b: 0, a: 255 }; 
         var data = new Uint8Array(width * height * 4);
         var pixelBuffer = new PixelBuffer(data, width, height);
         pixelBuffer.fill(color);
