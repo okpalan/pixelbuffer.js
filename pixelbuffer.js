@@ -38,7 +38,15 @@
         this.data[i + 3] = color.a || 255
     };
 
-    
+    PixelBuffer.prototype.getPixel = function(x, y) {
+        var index = (y * this.width + x) * 4;
+        return [
+            this.data[index],
+            this.data[index + 1],
+            this.data[index + 2],
+            this.data[index + 3]
+        ];
+    };
     /**
      * Blends a pixel buffer with this one.
      *
