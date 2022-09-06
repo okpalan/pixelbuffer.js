@@ -85,6 +85,26 @@
             }
         }
     };
+    
+    
+    /**
+     * Gets a string representation of the pixel buffer.
+     *
+     * @return {string} A string representation of the pixel buffer.
+     */
+    PixelBuffer.prototype.toString = function () {
+        if (!this._stringValue) {
+            var data = [], color;
+
+            for (var i = 0, len = this.data.length; i < len; i += 4) {
+                data.push(this.data[i], this.data[i + 1], this.data[i + 2], this.data[i + 3]);
+            }
+
+            this._stringValue = data.join(',');
+        }
+
+        return this._stringValue;
+    };
 
 
     if (typeof define == "function" && define.amd) {
