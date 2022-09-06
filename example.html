@@ -42,13 +42,15 @@
 
         // Draw the image data
         const ctx = canvas.getContext('2d');
+        ctx.globalAlpha =1 ;
+
         ctx.putImageData(imageData, 0, 0);
 
         // Create another canvas for the "dots"
         const dots = document.createElement('canvas');
         dots.width = 800;
         dots.height = 600;
-
+    
         // Create a pixel buffer
         const dotBuffer = PixelBuffer.create(800, 600);
 
@@ -61,6 +63,7 @@
 
         // Draw the image data
         const dotCtx = dots.getContext('2d');
+        dotCtx.globalAlpha =1 ;
         dotCtx.putImageData(dotImageData, 0, 0);
 
         // Define the dot size
@@ -121,7 +124,7 @@
         const blurDecaySpeed = 0.5;
 
         // Define the dot's size
-        let size = 2;
+        let size = 20;
 
         // Define the dot's size decay
         const sizeDecay = 0.0001;
@@ -155,9 +158,10 @@
             dotCtx.translate(-centerX, -centerY);
             // Draw the dots on the buffer
             dotCtx.drawImage(rainbow, 0, 0);
-            console.log(dotCtx.canvas);
             // Draw the buffer on the canvas
             ctx.drawImage(dotCtx.canvas, 0, 0);
+
+            
             // Decrease the opacity's decay
             opacity -= decay;
             // Decrease the blur
