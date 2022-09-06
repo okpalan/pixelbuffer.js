@@ -78,9 +78,9 @@
      *
      * @param {Vector} color The color to fill the pixel buffer with.
      */
-    PixelBuffer.prototype.fill = function (color,width,height) {
-        for (var i = 0; i < width; i++) {
-            for (var j = 0; j < height; j++) {
+    PixelBuffer.prototype.fill = function (color) {
+        for (var i = 0; i < this.width; i++) {
+            for (var j = 0; j < this.height; j++) {
                 this.setPixel(i, j, color);
             }
         }
