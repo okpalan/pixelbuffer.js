@@ -6,22 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML5 Canvas Demo of PixelBuffer</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
-    <script src="pixelbuffer.js" async>
-         function Color(r, g, b, a) {
+    <canvas id="pixelbuffered"></canvas>
+    <script src="./pixelbuffer.js"></script>
+    <script>
+        var Color = function (r, g, b, a) {
             this.r = r;
             this.g = g;
             this.b = b;
             this.a = a;
         }
         // Create a canvas element
-        const canvas = document.createElement('canvas');
+        const canvas = document.getElementById('pixelbuffered');
         canvas.width = 800;
         canvas.height = 600;
-        document.body.appendChild(canvas)
-       
+
+
+
 
         // Create a pixel buffer
         const buffer = PixelBuffer.create(800, 600);
@@ -37,7 +47,6 @@
         const ctx = canvas.getContext('2d');
         ctx.putImageData(imageData, 0, 0);
 
-        // The following code is from https://codepen.io/YannickDot/pen/OvLpJG
         // Create another canvas for the "dots"
         const dots = document.createElement('canvas');
         dots.width = 800;
@@ -60,7 +69,7 @@
         // Define the dot size
         const dotSize = 10;
         // Define the number of dots
-        const nbDots = 1000;
+        const nbDots = 500;
 
         // Draw the dots
         for (let i = 0; i < nbDots; i++) {
@@ -163,6 +172,7 @@
         // Start the rendering loop
         render();
     </script>
+
 
 </body>
 
