@@ -131,7 +131,8 @@
 
         // Define the number of frames to render
         const nbFrames = 1000;
-
+        var rainbow = new Image(100, 100)
+        rainbow.src = "./img/rainbow.jpg";
         // Define the rendering loop - will be called 60 times per second
         function render() {
             // Render the next frame
@@ -153,9 +154,8 @@
             dotCtx.rotate(angle);
             dotCtx.translate(-centerX, -centerY);
             // Draw the dots on the buffer
-            var rainbow = new Image(100,100)
-            rainbow.src = "./img/rainbow.jpg";
-            
+
+
             dotCtx.drawImage(rainbow, 0, 0);
             // Draw the buffer on the canvas
             // ctx.drawImage(dotCtx.canvas, 0, 0);
