@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Canvas Demo of PixelBuffer</title>
+</head>
+
+<body>
+    <script src="pixelbuffer.js" async>
+         function Color(r, g, b, a) {
+            this.r = r;
+            this.g = g;
+            this.b = b;
+            this.a = a;
+        }
+        // Create a canvas element
+        const canvas = document.createElement('canvas');
+        canvas.width = 800;
+        canvas.height = 600;
+        document.body.appendChild(canvas)
+       
+
+        // Create a pixel buffer
+        const buffer = PixelBuffer.create(800, 600);
+
+        // Fill it
+        buffer.fill(new Color(0, 0, 255, 255));
+
+        // Get the image data
+        const bufferData = buffer.data;
+        const imageData = new ImageData(bufferData, 800, 600);
+
+        // Draw the image data
+        const ctx = canvas.getContext('2d');
+        ctx.putImageData(imageData, 0, 0);
+
+        // The following code is from https://codepen.io/YannickDot/pen/OvLpJG
+        // Create another canvas for the "dots"
+        const dots = document.createElement('canvas');
+        dots.width = 800;
+        dots.height = 600;
+
+        // Create a pixel buffer
+        const dotBuffer = PixelBuffer.create(800, 600);
+
+        // Fill it
+        dotBuffer.fill(new Color(0, 0, 0, 255));
+
+        // Get the image data
+        const dotBufferData = dotBuffer.data;
+        const dotImageData = new ImageData(dotBufferData, 800, 600);
+
+        // Draw the image data
+        const dotCtx = dots.getContext('2d');
+        dotCtx.putImageData(dotImageData, 0, 0);
+
+        // Define the dot size
+        const dotSize = 10;
+        // Define the number of dots
+        const nbDots = 1000;
+
+        // Draw the dots
+        for (let i = 0; i < nbDots; i++) {
+            // Get a random x and y position
+            const x = Math.random() * 800;
+            const y = Math.random() * 600;
+            // Get the dot image data
+            const data = dotCtx.getImageData(0, 0, dotSize, dotSize);
+            // Get the index of the pixel
+            const index = ((Math.floor(x) + Math.floor(y) * dotSize) * 4);
+            // Set the pixel value
+            data.data[index] = 255;
+            data.data[index + 1] = 255;
+            data.data[index + 2] = 255;
+            data.data[index + 3] = 255;
+            // Draw the image data
+            dotCtx.putImageData(data, x, y);
+        }
+
+        // Define the rotation angle in radians
+        let angle = 0;
+
+        // Define the rotation speed in radians per second
+        const speed = 0.05;
+
+        // Define the center x and y position
+        const centerX = 800 / 2;
+        const centerY = 600 / 2;
+
+        // Define the dot's opacity
+        let opacity = 1;
+
+        // Define the opacity's decay
+        const decay = 0.0005;
+
+        // Define the opacity's decay speed in opacity per second
+        const decaySpeed = 1;
+
+        // Define the rotation's decay
+        const rotationDecay = 0.0001;
+
+        // Define the rotation's decay speed in radians per second
+        const rotationDecaySpeed = 1;
+
+        // Define the dot's blur
+        let blur = 10;
+
+        // Define the dot's blur decay
+        const blurDecay = 0.0001;
+
+        // Define the dot's blur decay speed in pixels per second
+        const blurDecaySpeed = 0.5;
+
+        // Define the dot's size
+        let size = 2;
+
+        // Define the dot's size decay
+        const sizeDecay = 0.0001;
+
+        // Define the dot's size decay speed in pixels per second
+        const sizeDecaySpeed = 0.5;
+
+        // Define the number of frames to render
+        const nbFrames = 1000;
+
+        // Define the rendering loop - will be called 60 times per second
+        function render() {
+            // Render the next frame
+            requestAnimationFrame(render);
+            // Increase the angle
+            angle += speed;
+            // Set the dot's opacity
+            dotCtx.globalAlpha = opacity;
+            // Set the blur
+            dotCtx.filter = `blur(${blur}px)`;
+
+            // Set the dot's size
+            dotCtx.canvas.width = size;
+            dotCtx.canvas.height = size;
+            // Reset the transformation
+            dotCtx.setTransform(1, 0, 0, 1, 0, 0);
+            // Rotate around the center
+            dotCtx.translate(centerX, centerY);
+            dotCtx.rotate(angle);
+            dotCtx.translate(-centerX, -centerY);
+            // Draw the dots on the buffer
+            dotCtx.drawImage(dotCtx.canvas, 0, 0);
+            // Draw the buffer on the canvas
+            ctx.drawImage(dotCtx.canvas, 0, 0);
+            // Decrease the opacity's decay
+            opacity -= decay;
+            // Decrease the blur
+            blur += blurDecay;
+            // Decrease the size
+            size += sizeDecay;
+            // Decrease the angle's decay
+            angle -= rotationDecay;
+        }
+
+        // Start the rendering loop
+        render();
+    </script>
+
+</body>
+
+</html>
