@@ -42,15 +42,15 @@
 
         // Draw the image data
         const ctx = canvas.getContext('2d');
-        ctx.globalAlpha =1 ;
+        ctx.globalAlpha = 1;
 
         ctx.putImageData(imageData, 0, 0);
 
         // Create another canvas for the "dots"
         const dots = document.createElement('canvas');
-        dots.width = 800;
-        dots.height = 600;
-    
+        // dots.width = 800;
+        // dots.height = 600;
+
         // Create a pixel buffer
         const dotBuffer = PixelBuffer.create(800, 600);
 
@@ -63,7 +63,7 @@
 
         // Draw the image data
         const dotCtx = dots.getContext('2d');
-        dotCtx.globalAlpha =1 ;
+        dotCtx.globalAlpha = 1;
         dotCtx.putImageData(dotImageData, 0, 0);
 
         // Define the dot size
@@ -134,8 +134,8 @@
 
         // Define the number of frames to render
         const nbFrames = 1000;
-        var rainbow = new Image(dotCtx.canvas.width, dotCtx.canvas.height);
-        rainbow.src = "./img/confusion.jpg";
+
+        // Render the frames
         // Define the rendering loop - will be called 60 times per second
         function render() {
             // Render the next frame
@@ -156,12 +156,19 @@
             dotCtx.translate(centerX, centerY);
             dotCtx.rotate(angle);
             dotCtx.translate(-centerX, -centerY);
-            // Draw the dots on the buffer
-            dotCtx.drawImage(rainbow, 0, 0);
+            //  ===================================================
+            var img = new Image();   // Create new img element
+            img.addEventListener('load', function () {
+                dotCtx.drawImage(this, 0, 0);
+            }, false);
+            img.src = './img/confusion.jpg'; //Set source path
+            //  ===================================================
+            // Draw the image data
             // Draw the buffer on the canvas
+            // console.log(img);
             ctx.drawImage(dotCtx.canvas, 0, 0);
+            // ====================================================
 
-            
             // Decrease the opacity's decay
             opacity -= decay;
             // Decrease the blur

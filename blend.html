@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="top"> </canvas>
+    <canvas id="bottom"> </canvas>
+    <script src="./pixelbuffer.js" defer>
+        var topImage = new Image();
+        topImage.addEventListener("load", function () {
+            var topCanvas = document.getElementById('top');
+            topCanvas.width = topImage.width;
+            topCanvas.height = topImage.height;
+            var topContext = topCanvas.getContext('2d');
+            topContext.drawImage(topImage, 0, 0);
+        })
+        topImage.src = './img/confusion.jpg';
+
+
+        var bottomImage = new Image();
+        bottomImage.onload = function () {
+            var bottomCanvas = document.getElementById('bottom');
+            bottomCanvas.width = bottomImage.width;
+            bottomCanvas.height = bottomImage.height;
+            var bottomContext = bottomCanvas.getContext('2d');
+            bottomContext.drawImage(bottomImage, 0, 0);
+        }
+        bottomImage.src = 'bottom.webp';
+
+        var topPixelBuffer = new PixelBuffer(topCanvas.width, topCanvas.height);
+        var bottomPixelBuffer = new PixelBuffer(bottomCanvas.width, bottomCanvas.height);
+
+        function blend() {
+            var topData = topContext.getImageData(0, 0, topCanvas.width, topCanvas.height).data;
+            var bottomData = bottomContext.getImageData(0, 0, bottomCanvas.width, bottomCanvas.height).data;
+
+            for (var i = 0; i < topData.length; i += 4) {
+                topPixelBuffer.data[i] = topData[i];
+                topPixelBuffer.data[i + 1] = topData[i + 1];
+                topPixelBuffer.data[i + 2] = topData[i + 2];
+                topPixelBuffer.data[i + 3] = topData[i + 3];
+
+                bottomPixelBuffer.data[i] = bottomData[i];
+                bottomPixelBuffer.data[i + 1] = bottomData[i + 1];
+                bottomPixelBuffer.data[i + 2] = bottomData[i + 2];
+                bottomPixelBuffer.data[i + 3] = bottomData[i + 3];
+            }
+
+            bottomPixelBuffer.blend(topPixelBuffer, 0, 0);
+
+            bottomContext.putImageData(bottomPixelBuffer.toImageData(), 0, 0);
+        }
+
+        topCanvas.addEventListener('mouseover', blend);
+        topCanvas.addEventListener('mouseout', function () {
+            bottomContext.drawImage(bottomImage, 0, 0);
+        });
+    </script>
+</body>
+
+</html>
