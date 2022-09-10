@@ -24,8 +24,9 @@
         const imageData = ctx.createImageData(100, 100);
         const pixelBuffer = new Uint32Array(imageData.data.buffer);
         for (let i = 0; i < pixelBuffer.length; i++) {
-            pixelBuffer[i] = 0xFF0000FF;
+            pixelBuffer[i] = 0xFF00FF00;
         }
+        console.log(pixelBuffer.length, "in example1.html");
         ctx.putImageData(imageData, 0, 0);
     </script>
 </body>

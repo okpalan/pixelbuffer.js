@@ -38,7 +38,7 @@ The following example creates a pixel buffer and sets the color of the pixel at 
         const ctx = canvas.getContext('2d');
         const imageData = ctx.createImageData(100, 100);
         const pixelBuffer = new PixelBuffer(imageData.data.buffer, 100, 100);
-        pixelBuffer.setPixel(0, 0, 0xFF2B2BFF);
+        pixelBuffer.setPixel(0, 0, 0xFF2B2B00);
         ctx.putImageData(imageData, 0, 0);
     </script>
 ```

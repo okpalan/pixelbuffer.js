@@ -17,13 +17,19 @@
 
 <body>
     <canvas id="buffer2"></canvas>
-    <script src="./pixelbuffer.js" defer>
-        const canvas = document.getElementById('buffer2');
-        const ctx = canvas.getContext('2d');
-        const imageData = ctx.createImageData(100, 100);
-        const pixelBuffer = new PixelBuffer(imageData.data.buffer, 100, 100);
-        pixelBuffer.setPixel(0, 0, 0xFF2B2BFF);
-        ctx.putImageData(imageData, 0, 0);
+    <script src="./pixelbuffer.js" >
+       // using pixelbuffer.js create a green screen
+       // of 100x100 pixels.
+         const canvas = document.getElementById('buffer2');
+            const ctx = canvas.getContext('2d');
+            const imageData = ctx.createImageData(100, 100);
+            const pixelBuffer = new PixelBuffer(imageData.data.buffer);
+            for (let i = 0; i < pixelBuffer.length; i++) {
+                pixelBuffer[i] = 0xFF00FF00;
+            }
+            console.log(pixelBuffer.length, "in example2.html");
+            ctx.putImageData(pixelBuffer, 0, 0);
+            
     </script>
 </body>
 

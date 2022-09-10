@@ -76,12 +76,10 @@
      * @param {object} color The default color of the pixel buffer.
      * @return {PixelBuffer} The new pixel buffer.
      */
-    PixelBuffer.create = function (width, height, color) {
-        if (!color) color = 0x000000;
-        var data = new Uint32Array(width * height * 4);
-        var pixelBuffer = new PixelBuffer(data);
-        pixelBuffer.width =width;
-        pixelBuffer.height = height;
+    PixelBuffer.create = function (data) {
+        if (!color) color = 0x00000000;
+        data = new Uint32Array(width * height * 4);
+        var pixelBuffer = new PixelBuffer(data, data.width, height);
         pixelBuffer.fill(color);
         return pixelBuffer;
     };
@@ -99,9 +97,8 @@
         }
     };
 
-    PixelBuffer.prototype.length = function () {
-        return this.data.length;
-    };
+
+    
 
     if (typeof define == "function" && define.amd) {
         define([], PixelBuffer);
