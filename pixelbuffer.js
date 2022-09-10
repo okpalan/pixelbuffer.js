@@ -6,10 +6,11 @@
      * @param {number} width The width of the pixel buffer.
      * @param {number} height The height of the pixel buffer.
      */
-    function PixelBuffer(data, width, height) {
+    function PixelBuffer(data) {
         this.data = data;
-        this.width = width;
-        this.height = height;
+        this.width = this.data.width;
+        this.height = this.data.height;
+        this.buffer = new Uint32Array(this.data);
     }
 
 
@@ -78,7 +79,7 @@
      * @return {PixelBuffer} The new pixel buffer.
      */
     PixelBuffer.create = function (width, height, color) {
-        if (!color) color = { r: 0, g: 0, b: 0, a: 255 }; 
+        if (!color) color = { r: 0, g: 0, b: 0, a: 255 };
         var data = new Uint8Array(width * height * 4);
         var pixelBuffer = new PixelBuffer(data, width, height);
         pixelBuffer.fill(color);
@@ -99,26 +100,28 @@
     };
 
 
-    /**
-     * Gets a string representation of the pixel buffer.
-     *
-     * @return {string} A string representation of the pixel buffer.
-     */
-    PixelBuffer.prototype.toString = function () {
-        if (!this._stringValue) {
-            var data = [], color;
+    // /**
+    //  * Gets a string representation of the pixel buffer.
+    //  *
+    //  * @return {string} A string representation of the pixel buffer.
+    //  */
+    // PixelBuffer.prototype.toString = function () {
+    //     if (!this._stringValue) {
+    //         var data = [], color;
 
-            for (var i = 0, len = this.data.length; i < len; i += 4) {
-                data.push(this.data[i], this.data[i + 1], this.data[i + 2], this.data[i + 3]);
-            }
+    //         for (var i = 0, len = this.data.length; i < len; i += 4) {
+    //             data.push(this.data[i], this.data[i + 1], this.data[i + 2], this.data[i + 3]);
+    //         }
 
-            this._stringValue = data.join(',');
-        }
+    //         this._stringValue = data.join(',');
+    //     }
 
-        return this._stringValue;
+    //     return this._stringValue;
+    // };
+
+    PixelBuffer.prototype.length = function () {
+        return this.data.length;
     };
-
-
     if (typeof define == "function" && define.amd) {
         define([], PixelBuffer);
     } else if (typeof module == "object" && module.exports) {
