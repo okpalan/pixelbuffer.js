@@ -22,7 +22,7 @@
         const canvas = document.getElementById('buffer1');
         const ctx = canvas.getContext('2d');
         const imageData = ctx.createImageData(100, 100);
-        const pixelBuffer = new Uint32Array(imageData.data);
+        const pixelBuffer = new Uint32Array(imageData.data.buffer);
         for (let i = 0; i < pixelBuffer.length; i++) {
             pixelBuffer[i] = 0xFF0000FF;
         }

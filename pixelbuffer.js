@@ -67,9 +67,7 @@
             }
         }
     };
-    PixelBuffer.prototype.toUint8ClampedArray = function () {
-        return new Uint8ClampedArray(this.data);
-    };
+
     /**
      * Creates a new pixel buffer.
      *
@@ -79,8 +77,8 @@
      * @return {PixelBuffer} The new pixel buffer.
      */
     PixelBuffer.create = function (width, height, color) {
-        if (!color) color = { r: 0, g: 0, b: 0, a: 255 };
-        var data = new Uint8Array(width * height * 4);
+        if (!color) color = 0x000000;
+        var data = new Uint32Array(width * height * 4);
         var pixelBuffer = new PixelBuffer(data, width, height);
         pixelBuffer.fill(color);
         return pixelBuffer;
