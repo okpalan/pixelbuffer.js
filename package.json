@@ -1,6 +1,6 @@
 {
   "name": "pixelbuffer",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "description": "A pixelbuffer implemented in JavaScript.",
   "main": "pixelbuffer.js",
@@ -9,7 +9,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/okpalan/pixelbuffer.js"},
+    "url": "git+https://github.com/okpalan/pixelbuffer.js"
+  },
   "author": "Nnamdi Michael Okpala",
   "license": "ISC",
   "keywords": [
