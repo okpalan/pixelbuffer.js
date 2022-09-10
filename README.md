@@ -1,5 +1,21 @@
 # PixelBuffer
-## A minimal implementation of a PixelBuffer.
+## Without PixelBuffer.js
+
+```html
+  <canvas id="buffer1"></canvas>
+    <script>
+        // vanillajs example if you do not need this module.
+        const canvas = document.getElementById('buffer1');
+        const ctx = canvas.getContext('2d');
+        const imageData = ctx.createImageData(100, 100);
+        const pixelBuffer = new Uint32Array(imageData.data.buffer);
+        for (let i = 0; i < pixelBuffer.length; i++) {
+            pixelBuffer[i] = 0xFF0000FF;
+        }
+        ctx.putImageData(imageData, 0, 0);
+    </script>
+```
+## An implementation of a PixelBuffer.
 
 The `PixelBuffer` constructor is used to create a new pixel buffer. A pixel buffer is an array buffer that stores pixel data. The `PixelBuffer` constructor takes three arguments: the array buffer that stores the pixel data, the width of the pixel buffer, and the height of the pixel buffer.
 
