@@ -6,8 +6,8 @@
      * @param {number} width The width of the pixel buffer.
      * @param {number} height The height of the pixel buffer.
      */
-    function PixelBuffer(data) {
-        this.data = data;
+    function PixelBuffer(imageData) {
+        this.data = imageData.data;
         this.width = this.data.width;
         this.height = this.data.height;
         this.buffer = new Uint32Array(this.data);

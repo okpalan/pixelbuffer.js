@@ -23,10 +23,10 @@
          const canvas = document.getElementById('buffer2');
         const ctx = canvas.getContext('2d');
         const imageData = ctx.createImageData(100, 100);
-        const pixelBuffer = new PixelBuffer(imageData.data.buffer);
+        console.log(imageData)
+        const pixelBuffer = new PixelBuffer(imageData);
         console.log(pixelBuffer, "in example2.html");
         ctx.putImageData(pixelBuffer, 0, 0);
-            
     </script>
 </body>
 
