@@ -24,8 +24,9 @@
             const ctx = canvas.getContext('2d');
             const imageData = ctx.createImageData(100, 100);
             const pixelBuffer = new PixelBuffer(imageData.data.buffer);
-            for (let i = 0; i < pixelBuffer.length; i++) {
-                pixelBuffer[i] = 0xFF00FF00;
+            for (let i = 0; i < 100; i++) {
+                for (let j = 0; j < 100; j++) {
+                    pixelBuffer.setPixel(i, j,)
             }
             console.log(pixelBuffer, "in example2.html");
             ctx.putImageData(pixelBuffer, 0, 0);

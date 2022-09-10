@@ -11,6 +11,7 @@
         this.width = this.data.width;
         this.height = this.data.height;
         this.buffer = new Uint32Array(this.data);
+        return this
     }
 
 
@@ -34,10 +35,12 @@
      */
     PixelBuffer.prototype.setPixel = function (x, y, color) {
         var i = this.getIndex(x, y);
-        this.data[i] = color.r;
-        this.data[i + 1] = color.g;
-        this.data[i + 2] = color.b;
-        this.data[i + 3] = color.a || 255
+        this.data[i] = color;
+        // this.data[i] = color.r;
+        // this.data[i + 1] = color.g;
+        // this.data[i + 2] = color.b;
+        // this.data[i + 3] = color.a || 255
+    
     };
 
     PixelBuffer.prototype.getPixel = function (x, y) {
