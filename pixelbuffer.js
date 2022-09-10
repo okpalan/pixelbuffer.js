@@ -40,7 +40,7 @@
         // this.data[i + 1] = color.g;
         // this.data[i + 2] = color.b;
         // this.data[i + 3] = color.a || 255
-    
+
     };
 
     PixelBuffer.prototype.getPixel = function (x, y) {
@@ -102,7 +102,7 @@
 
     // implement a length property for the PixelBuffer.
     Object.defineProperty(PixelBuffer.prototype, 'length', {
-        get() {
+        get: function () {
             return this.buffer.length;
         },
         configurable: false
