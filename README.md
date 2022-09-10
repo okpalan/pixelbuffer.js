@@ -27,20 +27,18 @@ Gets the index of the pixel in the array buffer. The `x` and `y` arguments are t
 ### setPixel(x, y, color)
 Sets the color of the pixel. The `x` and `y` arguments are the x-coordinate and y-coordinate of the pixel, respectively. The `color` argument is a vector that represents the color of the pixel.
 
-# Example#
+# Example
 The following example creates a pixel buffer and sets the color of the pixel at position (0, 0) to red.
 
-```js
-var data = new Uint8Array(4);
-var width = 1;
-var height = 1;
-var pixelBuffer = new PixelBuffer(data, width, height);
-
-var color = {
-    x:225,
-    y:0,
-    z:0,
-    // a: default to 255
-    }
-pixelBuffer.setPixel(0, 0, color);
+```html
+  <canvas id="buffer2"></canvas>
+    <script type="module">
+        import { PixelBuffer } from './PixelBuffer.js';
+        const canvas = document.getElementById('buffer2');
+        const ctx = canvas.getContext('2d');
+        const imageData = ctx.createImageData(100, 100);
+        const pixelBuffer = new PixelBuffer(imageData.data.buffer, 100, 100);
+        pixelBuffer.setPixel(0, 0, 0xFF2B2BFF);
+        ctx.putImageData(imageData, 0, 0);
+    </script>
 ```
