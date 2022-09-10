@@ -21,11 +21,8 @@
         const canvas = document.getElementById('buffer2');
         const ctx = canvas.getContext('2d');
         const imageData = ctx.createImageData(100, 100);
-        const pixelBuffer = new PixelBuffer(imageData.buffer);
-        console.log(pixelBuffer);
-        for (let i = 0; i < pixelBuffer.length; i++) {
-            pixelBuffer[i] = 0xFF00FF00;
-        }
+        const pixelBuffer = new PixelBuffer(imageData);
+        pixelBuffer.fill(0xFF0000FF);
         ctx.putImageData(imageData, 0, 0);
     </script>
 </body>

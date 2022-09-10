@@ -79,7 +79,9 @@
     PixelBuffer.create = function (width, height, color) {
         if (!color) color = 0x000000;
         var data = new Uint32Array(width * height * 4);
-        var pixelBuffer = new PixelBuffer(data, width, height);
+        var pixelBuffer = new PixelBuffer(data);
+        pixelBuffer.width =width;
+        pixelBuffer.height = height;
         pixelBuffer.fill(color);
         return pixelBuffer;
     };
@@ -97,29 +99,10 @@
         }
     };
 
-
-    // /**
-    //  * Gets a string representation of the pixel buffer.
-    //  *
-    //  * @return {string} A string representation of the pixel buffer.
-    //  */
-    // PixelBuffer.prototype.toString = function () {
-    //     if (!this._stringValue) {
-    //         var data = [], color;
-
-    //         for (var i = 0, len = this.data.length; i < len; i += 4) {
-    //             data.push(this.data[i], this.data[i + 1], this.data[i + 2], this.data[i + 3]);
-    //         }
-
-    //         this._stringValue = data.join(',');
-    //     }
-
-    //     return this._stringValue;
-    // };
-
     PixelBuffer.prototype.length = function () {
         return this.data.length;
     };
+
     if (typeof define == "function" && define.amd) {
         define([], PixelBuffer);
     } else if (typeof module == "object" && module.exports) {
