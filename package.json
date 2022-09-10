@@ -7,6 +7,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/okpalan/pixelbuffer.js"},
   "author": "Nnamdi Michael Okpala",
   "license": "ISC",
   "keywords": [
