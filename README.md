@@ -1,5 +1,5 @@
 # PixelBuffer
-## An implementation of a PixelBuffer.
+## An implementation of a [PixelBuffer](https://github.com/okpalan/pixelbuffer.js).
 
 ## Without PixelBuffer.js
 ```html
