@@ -32,8 +32,7 @@ The following example creates a pixel buffer and sets the color of the pixel at 
 
 ```html
   <canvas id="buffer2"></canvas>
-    <script type="module">
-        import { PixelBuffer } from './PixelBuffer.js';
+    <script type="./pixelbuffer.js">
         const canvas = document.getElementById('buffer2');
         const ctx = canvas.getContext('2d');
         const imageData = ctx.createImageData(100, 100);
