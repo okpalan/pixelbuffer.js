@@ -97,8 +97,15 @@
         }
     };
 
+    // implement a length property for the PixelBuffer.
+    Object.defineProperty(PixelBuffer.prototype, 'length', {
+        get() {
+            return this.buffer.length;
+        },
+        configurable: false
+    });
 
-    
+
 
     if (typeof define == "function" && define.amd) {
         define([], PixelBuffer);
