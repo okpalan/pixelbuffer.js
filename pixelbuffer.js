@@ -31,7 +31,7 @@
      *
      * @param {number} x The x-coordinate of the pixel.
      * @param {number} y The y-coordinate of the pixel.
-     * @param {Vector} color The color of the pixel.
+     * @param {string} color The color of the pixel.
      */
     PixelBuffer.prototype.setPixel = function (x, y, color) {
         var i = this.getIndex(x, y);
