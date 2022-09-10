@@ -1,5 +1,5 @@
 {
-  "name": "pixelbuffer",
+  "name": "pixelbuffer.js",
   "version": "0.2.0",
   "private": false,
   "description": "A pixelbuffer implemented in JavaScript.",

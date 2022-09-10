@@ -79,7 +79,7 @@
      * @param {object} color The default color of the pixel buffer.
      * @return {PixelBuffer} The new pixel buffer.
      */
-    PixelBuffer.create = function (data) {
+    PixelBuffer.create = function (data,color) {
         if (!color) color = 0x00000000;
         data = new Uint32Array(width * height * 4);
         var pixelBuffer = new PixelBuffer(data, data.width, height);
