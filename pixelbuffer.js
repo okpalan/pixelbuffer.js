@@ -35,7 +35,7 @@
      */
     PixelBuffer.prototype.setPixel = function (x, y, color) {
         var i = this.getIndex(x, y);
-        this.data[i] = color;
+        this.data[i] = color || 0x00000000;
         // this.data[i] = color.r;
         // this.data[i + 1] = color.g;
         // this.data[i + 2] = color.b;
