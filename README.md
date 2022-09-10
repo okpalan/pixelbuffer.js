@@ -1,6 +1,7 @@
 # PixelBuffer
-## Without PixelBuffer.js
+## An implementation of a PixelBuffer.
 
+## Without PixelBuffer.js
 ```html
   <canvas id="buffer1"></canvas>
     <script>
@@ -15,8 +16,7 @@
         ctx.putImageData(imageData, 0, 0);
     </script>
 ```
-## An implementation of a PixelBuffer.
-
+## With PixelBuffer.js
 The `PixelBuffer` constructor is used to create a new pixel buffer. A pixel buffer is an array buffer that stores pixel data. The `PixelBuffer` constructor takes three arguments: the array buffer that stores the pixel data, the width of the pixel buffer, and the height of the pixel buffer.
 
 ## Methods
